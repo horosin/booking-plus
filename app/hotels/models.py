@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class SampleType(models.Model):
+class HotelType(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
@@ -10,10 +10,10 @@ class SampleType(models.Model):
         return self.name
 
 
-class Sample(models.Model):
+class Hotel(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    type = models.ForeignKey(SampleType, on_delete=models.CASCADE)
+    type = models.ForeignKey(HotelType, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

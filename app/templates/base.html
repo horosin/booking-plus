@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <title>Laboratory</title>
+  <title>Booking Plus</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css">
@@ -19,7 +19,7 @@
   <header>
     <nav class="navbar navbar-expand-md fixed-top  navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#">Laboratory</a>
+        <a class="navbar-brand" href="#">booking+</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
           aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -30,13 +30,10 @@
               <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'create' %}">New sample</a>
+              <a class="nav-link" href="{% url 'create' %}">New hotel</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about_class' %}">About (class)</a>
+              <a class="nav-link" href="{% url 'about_class' %}">About</a>
             </li>
             {% if user.is_superuser %}
             <li class="nav-item">

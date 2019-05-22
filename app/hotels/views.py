@@ -4,7 +4,7 @@ from django.views import View, generic
 from django.urls import reverse_lazy
 
 from django.contrib.auth.models import User
-from .models import Sample, SampleType
+from .models import Hotel, HotelType
 
 
 def other_page(request):
@@ -14,26 +14,26 @@ def other_page(request):
     return render(request, 'samples/other.html', context)
 
 
-class SampleCreateView(generic.CreateView):
-    model = Sample
+class HotelCreateView(generic.CreateView):
+    model = Hotel
     fields = '__all__'
     success_url = reverse_lazy('index')
 
 
-class SampleUpdateView(generic.UpdateView):
-    model = Sample
+class HotelUpdateView(generic.UpdateView):
+    model = Hotel
     fields = '__all__'
 
     def get_success_url(self):
         return reverse_lazy('detail', args=[self.kwargs['pk']])
 
 
-class SampleListView(generic.ListView):
-    model = Sample
+class HotelListView(generic.ListView):
+    model = Hotel
 
 
-class SampleDetailView(generic.DetailView):
-    model = Sample
+class HotelDetailView(generic.DetailView):
+    model = Hotel
 
 
 class AboutView(generic.TemplateView):
