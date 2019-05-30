@@ -1,4 +1,5 @@
 {% load static %}
+{% load properties_utils %}
 <!doctype html>
 <html lang="en">
 
@@ -30,14 +31,16 @@
               <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'create' %}">New hotel</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{% url 'about_class' %}">About</a>
             </li>
             {% if user.is_superuser %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+            </li>
+            {% endif %}
+            {% if user|has_group:"PropertyStaff" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create' %}">New hotel</a>
             </li>
             {% endif %}
           </ul>
