@@ -3,27 +3,22 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="pb-5">Property list</h1>
-    <table class="table app-datatable">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Owner</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for sample in object_list %}
-            <tr>
-                <td>{{sample.id}}</td>
-                <td><a href="{% url 'detail' sample.id %}">{{sample.name}}</a></td>
-                <td>{{sample.type}}</td>
-                <td>{{sample.created_by}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1 class="pb-5">Search properties</h1>
+    {% for object in object_list %}
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-2 p-5">
+                <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/hotel.png" class="card-img" alt="...">
+            </div>
+            <div class="col-md-10 p-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{object.name}}</h5>
+                    <p class="card-text">{{object.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock content %}
