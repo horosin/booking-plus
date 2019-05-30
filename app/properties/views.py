@@ -16,8 +16,12 @@ def other_page(request):
 
 class PropertyCreateView(generic.CreateView):
     model = Property
-    fields = '__all__'
+    fields = ['name', 'description', 'type']
     success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(PropertyCreateView, self).form_valid(form)
 
 
 class PropertyUpdateView(generic.UpdateView):

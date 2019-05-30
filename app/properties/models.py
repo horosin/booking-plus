@@ -13,6 +13,11 @@ class PropertyType(models.Model):
 class Property(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    capacity = models.IntegerField(default=2)
+    street = models.CharField(max_length=100)
+    building = models.CharField(max_length=10)
+    apartment = models.CharField(max_length=10, null=True)
+    city = models.CharField(max_length=200)
     type = models.ForeignKey(PropertyType, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
