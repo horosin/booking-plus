@@ -2,10 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views import View, generic
 from django.urls import reverse_lazy
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+
+
 from .models import Property, PropertyType
 from .forms import SearchPropertyForm
+
 
 import logging
 logger = logging.getLogger(__name__)
@@ -53,6 +56,10 @@ class PropertyListView(generic.ListView):
                 capacity__gte=data['people']
             )
         return queryset
+
+
+class BookView(LoginRequiredMixin, generic.DetailView):
+    model = Property
 
 
 class PropertyDetailView(generic.DetailView):
