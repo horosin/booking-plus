@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 
-from .models import Property, PropertyType
+from .models import Property, PropertyType, Booking
 from .forms import SearchPropertyForm
 
 
@@ -24,7 +24,7 @@ def other_page(request):
 class PropertyCreateView(generic.CreateView):
     model = Property
     fields = ['name', 'description', 'type', 'street',
-        'building', 'apartment', 'city']
+              'building', 'apartment', 'city']
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
@@ -46,7 +46,7 @@ class PropertyListView(generic.ListView):
 
     def get_queryset(self):
         queryset = super(PropertyListView, self).get_queryset()
-        
+
         form = self.form_class(self.request.GET)
         if form.is_valid():
             data = form.cleaned_data
@@ -73,7 +73,6 @@ class AboutView(generic.TemplateView):
 class BookView(View):
 
     def get(self, request, *args, **kwargs):
-        
         property = get_object_or_404(Property, pk=self.kwargs['pk'])
 
         context = {
@@ -81,4 +80,15 @@ class BookView(View):
             'date_from': self.kwargs['date_from'],
             'date_to': self.kwargs['date_to']
         }
+
+        if request.GET.get('confirm'):
+            Booking.objects.create(
+                property=property,
+                user=request.user,
+                # datetime.datetime.strptime(self.kwargs['date_from'], '%Y-%m-%d) 
+                date_from=self.kwargs['date_from'],
+                date_to=self.kwargs['date_to']
+            )
+            context['confirm'] = True
+
         return render(request, 'properties/book.html', context)

@@ -3,7 +3,11 @@
 {% block content %}
 
 <div class="container">
+    {% if not confirm %}
     <h1>Confirm your booking!</h1>
+    {% else %}
+    <h1>Your booking is confirmed!</h1>
+    {% endif %}
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-2 p-5">
@@ -23,7 +27,9 @@
     <div class="card p-5 mb-3">
         <p class="m-0" >Booking period: from <span class="font-weight-bold">{{ date_from }}</span> to <span class="font-weight-bold">{{ date_to }}</span>.</p>
     </div>
-    <a href="confirm" class="btn btn-block btn-info">Confirm booking</a>
+    {% if not confirm %}
+    <a href="?confirm=1" class="btn btn-block btn-info">Confirm booking</a>
+    {% endif %}
 </div>
 
 {% endblock content %}
