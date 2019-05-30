@@ -50,10 +50,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'lab.middleware.RequireLoginMiddleware',
+    'app.middleware.RequireLoginMiddleware',
 ]
 
-ROOT_URLCONF = 'lab.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lab.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
@@ -134,9 +134,9 @@ LOGIN_REDIRECT_URL = '/samples/'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 LOGIN_REQUIRED_URLS = (
-    r'(.*)',
 )
 LOGIN_REQUIRED_URLS_EXCEPTIONS = (
+    r'(.*)',
     r'/admin(.*)$',
     r'/accounts(.*)$',
 )
