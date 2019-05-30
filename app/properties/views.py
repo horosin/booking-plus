@@ -48,7 +48,10 @@ class PropertyListView(generic.ListView):
         if form.is_valid():
             data = form.cleaned_data
             logger.warn(data)
-            return queryset.filter(city__icontains=data['city'])
+            return queryset.filter(
+                city__icontains=data['city'],
+                capacity__gte=data['people']
+            )
         return queryset
 
 

@@ -3,21 +3,25 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="pb-2">Find your new favourite place</h1>
+    <h1 class="pb-2">Find your new favourite place 
+        {% if request.GET.city %}
+        in {{request.GET.city}}
+        {% endif %}
+    </h1>
     <div class="card mb-3 p-3 text-white bg-info">
         <form method="get">
             <div class="form-row">
                 <div class="col-7">
-                    <input type="text" name="city" class="form-control" placeholder="City">
+                    <input type="text" name="city" class="form-control" placeholder="City" value="{{request.GET.city}}">
                 </div>
                 <div class="col">
-                    <input type="text" name="people" class="form-control" placeholder="People">
+                    <input type="number" name="people" class="form-control" placeholder="People" value="{{request.GET.people}}">
                 </div>
                 <div class="col">
-                    <input type="text" name="date_from" class="form-control datepicker" placeholder="Date from">
+                    <input type="text" name="date_from" class="form-control datepicker" placeholder="Date from" value="{{request.GET.date_from}}">
                 </div>
                 <div class="col">
-                    <input type="text" name="date_to" class="form-control datepicker" placeholder="Date to">
+                    <input type="text" name="date_to" class="form-control datepicker" placeholder="Date to" value="{{request.GET.date_to}}">
                 </div>
                 {% csrf_token %}
                 <div class="col">
