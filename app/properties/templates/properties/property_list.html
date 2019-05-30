@@ -3,12 +3,35 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="pb-5">Search properties</h1>
+    <h1 class="pb-2">Find your new favourite place</h1>
+    <div class="card mb-3 p-3 text-white bg-info">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-7">
+                    <input type="text" class="form-control" placeholder="City">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="People">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control datepicker" placeholder="Date from">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control datepicker" placeholder="Date to">
+                </div>
+                <div class="col">
+                    <input type="submit" class="btn btn-danger btn-block" value="Search">
+                </div>
+            </div>
+        </form>
+    </div>
     {% for object in object_list %}
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-2 p-5">
-                <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/hotel.png" class="card-img" alt="...">
+                <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/hotel.png"
+                    class="card-img" alt="...">
             </div>
             <div class="col-md-10 p-3">
                 <div class="card-body">
@@ -20,5 +43,4 @@
     </div>
     {% endfor %}
 </div>
-
 {% endblock content %}
