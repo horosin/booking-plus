@@ -16,7 +16,8 @@ def other_page(request):
 
 class PropertyCreateView(generic.CreateView):
     model = Property
-    fields = ['name', 'description', 'type']
+    fields = ['name', 'description', 'type', 'street',
+        'building', 'apartment', 'city']
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
