@@ -26,3 +26,12 @@ class Property(models.Model):
 
     class Meta:
         verbose_name_plural = 'Properties'
+
+
+class Booking(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.PROTECT)
+    date_from = models.DateField()
+    date_to = models.DateField()
+
+    def __str__(self):
+        return f'Booking in {self.property.name} from {str(self.date_from)} to {str(self.date_to)}'
