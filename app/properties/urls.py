@@ -4,7 +4,6 @@ from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
-    path('other/', views.other_page, name='other'),
     path('<int:pk>/', views.PropertyDetailView.as_view(), name='detail'),
     path('<int:pk>/update', views.PropertyUpdateView.as_view(), name='update'),
     path('create/', views.PropertyCreateView.as_view(), name='create'),
