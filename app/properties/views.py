@@ -43,14 +43,6 @@ class PropertyCreateView(generic.CreateView):
         return super(PropertyCreateView, self).form_valid(form)
 
 
-class PropertyUpdateView(generic.UpdateView):
-    model = Property
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse_lazy('detail', args=[self.kwargs['pk']])
-
-
 class PropertyListView(generic.ListView):
     model = Property
     form_class = SearchPropertyForm
@@ -83,19 +75,7 @@ class PropertyListView(generic.ListView):
         return queryset.filter(id__in=available_ids)
 
 
-class PropertyDetailView(generic.DetailView):
-    model = Property
-
-
-class AboutView(generic.TemplateView):
-    template_name = 'properties/about.html'
-
-    def get_context_data(self):
-        context = {'dynamic_val': 'this info changes'}
-        return context
-
-
-class BookView(View):
+class BookView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         prop = get_object_or_404(Property, pk=self.kwargs['pk'])

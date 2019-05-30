@@ -12,7 +12,8 @@
         <form method="get" name="search">
             <div class="form-row">
                 <div class="col-5">
-                    <input type="text" name="city" class="form-control" placeholder="City" value="{{request.GET.city}}" required>
+                    <input type="text" name="city" class="form-control" placeholder="City" value="{{request.GET.city}}"
+                        required>
                 </div>
                 <div class="col">
                     <input type="number" name="people" class="form-control" placeholder="People"
@@ -50,8 +51,12 @@
                     <p>Can host {{ object.capacity }} people</p>
                 </div>
             </div>
-            <div class="col-md-2 p-3">
-                <a class="btn btn-info btn-block" href="{% url 'book' object.id request.GET.date_from request.GET.date_to %}">Book</a>
+            <div class="col-md-2 pb-5 pr-3 book-section">
+                <div>
+                    <span>Book before it's too late!</span>
+                    <a class="btn btn-info btn-block mt-2"
+                        href="{% url 'book' object.id request.GET.date_from request.GET.date_to %}">Book</a>
+                </div>
             </div>
         </div>
     </div>
@@ -65,11 +70,11 @@
         let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         let yyyy = today.getFullYear();
 
-        return yyyy + '-' + mm + '-' +dd;
+        return yyyy + '-' + mm + '-' + dd;
     }
     document.forms["search"]["date_from"].setAttribute('min', getDate());
 
-    document.forms["search"]["date_from"].addEventListener("change", function() {
+    document.forms["search"]["date_from"].addEventListener("change", function () {
         document.forms["search"]["date_to"].setAttribute(
             'min',
             document.forms["search"]["date_from"].value

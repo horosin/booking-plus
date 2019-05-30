@@ -18,7 +18,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{object.name}}</h5>
                     <p class="card-text">{{object.description}}</p>
-                    <p>{{ object.street }} {{ object.building }} {{ object.apartment }}, {{ object.city }}</p>
+                    <p>{{ object.street }} {{ object.building }}
+                        {% if object.apartment %}{{ object.apartment }}{% endif %}, {{ object.city }}</p>
                     <p>Can host {{ object.capacity }} people</p>
                 </div>
             </div>

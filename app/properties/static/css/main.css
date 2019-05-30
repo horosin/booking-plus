@@ -3,3 +3,13 @@ body {
   padding-bottom: 3rem;
   color: #5a5a5a;
 }
+
+.book-section {
+  height: 100%;
+  display: flex;
+}
+
+.book-section div {
+  display: inline-block;
+  align-self: flex-end;
+}
