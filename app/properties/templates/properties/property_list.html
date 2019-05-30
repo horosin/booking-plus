@@ -3,25 +3,28 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="pb-2">Find your new favourite place 
+    <h1 class="pb-2">Find your new favourite place
         {% if request.GET.city %}
         in {{request.GET.city}}
         {% endif %}
     </h1>
     <div class="card mb-3 p-3 text-white bg-info">
-        <form method="get">
+        <form method="get" name="search">
             <div class="form-row">
-                <div class="col-7">
-                    <input type="text" name="city" class="form-control" placeholder="City" value="{{request.GET.city}}">
+                <div class="col-5">
+                    <input type="text" name="city" class="form-control" placeholder="City" value="{{request.GET.city}}" required>
                 </div>
                 <div class="col">
-                    <input type="number" name="people" class="form-control" placeholder="People" value="{{request.GET.people}}">
+                    <input type="number" name="people" class="form-control" placeholder="People"
+                        value="{{request.GET.people}}" required>
                 </div>
                 <div class="col">
-                    <input type="text" name="date_from" class="form-control datepicker" placeholder="Date from" value="{{request.GET.date_from}}">
+                    <input type="date" name="date_from" class="form-control datepicker" placeholder="Date from"
+                        value="{{request.GET.date_from}}" required>
                 </div>
                 <div class="col">
-                    <input type="text" name="date_to" class="form-control datepicker" placeholder="Date to" value="{{request.GET.date_to}}">
+                    <input type="date" name="date_to" class="form-control datepicker" placeholder="Date to"
+                        value="{{request.GET.date_to}}" required>
                 </div>
                 {% csrf_token %}
                 <div class="col">
@@ -30,6 +33,7 @@
             </div>
         </form>
     </div>
+    <p>Found {{ object_list | length }} properties to book</p>
     {% for object in object_list %}
     <div class="card mb-3">
         <div class="row no-gutters">
@@ -47,4 +51,22 @@
     </div>
     {% endfor %}
 </div>
+<script>
+    function getDate() {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+
+        return yyyy + '-' + mm + '-' +dd;
+    }
+    document.forms["search"]["date_from"].setAttribute('min', getDate());
+
+    document.forms["search"]["date_from"].addEventListener("change", function() {
+        document.forms["search"]["date_to"].setAttribute(
+            'min',
+            document.forms["search"]["date_from"].value
+        );
+    });
+</script>
 {% endblock content %}
