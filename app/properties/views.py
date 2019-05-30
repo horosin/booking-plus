@@ -5,6 +5,10 @@ from django.urls import reverse_lazy
 
 from django.contrib.auth.models import User
 from .models import Property, PropertyType
+from .forms import SearchPropertyForm
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 def other_page(request):
@@ -35,6 +39,17 @@ class PropertyUpdateView(generic.UpdateView):
 
 class PropertyListView(generic.ListView):
     model = Property
+    form_class = SearchPropertyForm
+
+    def get_queryset(self):
+        queryset = super(PropertyListView, self).get_queryset()
+        
+        form = self.form_class(self.request.GET)
+        if form.is_valid():
+            data = form.cleaned_data
+            logger.warn(data)
+            return queryset.filter(city__icontains=data['city'])
+        return queryset
 
 
 class PropertyDetailView(generic.DetailView):

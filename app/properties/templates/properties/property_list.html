@@ -5,21 +5,21 @@
 <div class="container">
     <h1 class="pb-2">Find your new favourite place</h1>
     <div class="card mb-3 p-3 text-white bg-info">
-        <form method="POST">
-            {% csrf_token %}
+        <form method="get">
             <div class="form-row">
                 <div class="col-7">
-                    <input type="text" class="form-control" placeholder="City">
+                    <input type="text" name="city" class="form-control" placeholder="City">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="People">
+                    <input type="text" name="people" class="form-control" placeholder="People">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control datepicker" placeholder="Date from">
+                    <input type="text" name="date_from" class="form-control datepicker" placeholder="Date from">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control datepicker" placeholder="Date to">
+                    <input type="text" name="date_to" class="form-control datepicker" placeholder="Date to">
                 </div>
+                {% csrf_token %}
                 <div class="col">
                     <input type="submit" class="btn btn-danger btn-block" value="Search">
                 </div>
