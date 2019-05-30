@@ -46,10 +46,12 @@
                 <div class="card-body">
                     <h5 class="card-title">{{object.name}}</h5>
                     <p class="card-text">{{object.description}}</p>
+                    <p>{{ object.street }} {{ object.building }} {{ object.apartment }}, {{ object.city }}</p>
+                    <p>Can host {{ object.capacity }} people</p>
                 </div>
             </div>
             <div class="col-md-2 p-3">
-                <a class="btn btn-info btn-block" href="{% url 'book' object.id %}">Book</a>
+                <a class="btn btn-info btn-block" href="{% url 'book' object.id request.GET.date_from request.GET.date_to %}">Book</a>
             </div>
         </div>
     </div>

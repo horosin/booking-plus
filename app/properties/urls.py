@@ -10,6 +10,6 @@ urlpatterns = [
     path('create/', views.PropertyCreateView.as_view(), name='create'),
     path('about/', TemplateView.as_view(template_name="samples/about.html"), name='about'),
     path('about-class/', views.AboutView.as_view(), name='about_class'),
-    path('book/<int:pk>/', views.BookView.as_view(), name='book'),
+    path('book/<int:pk>/<date_from>/<date_to>/', views.BookView.as_view(), name='book'),
     path('', views.PropertyListView.as_view(), name='index'),
 ]

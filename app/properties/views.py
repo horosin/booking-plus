@@ -58,17 +58,27 @@ class PropertyListView(generic.ListView):
         return queryset
 
 
-class BookView(LoginRequiredMixin, generic.DetailView):
-    model = Property
-
-
 class PropertyDetailView(generic.DetailView):
     model = Property
 
 
 class AboutView(generic.TemplateView):
-    template_name = 'samples/about.html'
+    template_name = 'properties/about.html'
 
     def get_context_data(self):
         context = {'dynamic_val': 'this info changes'}
         return context
+
+
+class BookView(View):
+
+    def get(self, request, *args, **kwargs):
+        
+        property = get_object_or_404(Property, pk=self.kwargs['pk'])
+
+        context = {
+            'object': property,
+            'date_from': self.kwargs['date_from'],
+            'date_to': self.kwargs['date_to']
+        }
+        return render(request, 'properties/book.html', context)
